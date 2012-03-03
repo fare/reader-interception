@@ -1,0 +1,31 @@
+READER-INTERCEPTION
+
+This library allows you to intercept the Lisp reader
+and replace the Lisp syntax with your own.
+
+Applications include:
+* using COMPILE-FILE to compile files in arbitrary languages,
+ by having a reader that expands the language into Lisp code.
+* having your own improved syntax replace the CL syntax
+ while using the CL runtime.
+
+
+==== Exported Functionality ====
+
+The reader-interception library creates a package READER-INTERCEPTION,
+that exports the following macros and functions:
+
+WITH-READER-INTERCEPTION ((HINT READER) &BODY BODY)
+  This macro allows you to intercept the reader within its BODY.
+  READER is a function that has the same interface as #'CL:READ.
+  You must pass a HINT, which must be one of:
+  * the pathname of the file that will be read
+  * the stream that will be read
+  * the string that will be read from
+  * the first character of the file, stream or string that will be read from.
+  * T if you don't know or care which character that will be, but
+    can promise it will be ASCII (char-code strictly less than 128).
+  * NIL if you promise that whichever character will be next read (if any)
+    has already been seen by the reader-interception
+    (notably works on empty files/streams/strings).
+

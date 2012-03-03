@@ -1,0 +1,5 @@
+#+xcvb
+(module
+ (:fullname "reader-interception"
+  :depends-on ("reader-interception")
+  :supersedes-asdf ("reader-interception")))
