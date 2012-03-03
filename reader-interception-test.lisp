@@ -84,10 +84,6 @@
 (defun terminatorp (char)
   (and (position char #(nil #\) #\] #\} #\; #\. #\, #\! #\?)) t))
 
-(defun parse-infix-sum (stream)
-  (let ((*count* 0))
-    (values (parse-sum stream) *count*)))
-
 (defun next-term-char (stream &key eof-error-p)
   (loop :for char = (read-count-char stream eof-error-p)
     :for spacep = (and char (spacep char))
