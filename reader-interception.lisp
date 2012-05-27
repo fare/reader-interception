@@ -1,3 +1,5 @@
+#+xcvb (module ())
+
 (in-package :cl-user)
 
 (defpackage :reader-interception
